@@ -2,7 +2,8 @@
 
 namespace NaveenCodehub\LaravelSelectiveSlackLogger;
 
-use Monolog\Logger;
+use Monolog\Level;
+use Monolog\LogRecord;
 use Monolog\Handler\SlackWebhookHandler;
 use Monolog\Handler\MissingExtensionException;
 
@@ -17,13 +18,12 @@ class CustomLogLevelHandler extends SlackWebhookHandler
      * Create a new CustomLogLevelHandler instance.
      *
      * @param string $url The Slack webhook URL for sending log messages.
-     * @param array $levels The log levels to handle. Defaults to [Logger::INFO].
+     * @param array $levels The log levels to handle. Defaults to [Level::Info].
      *
      * @throws MissingExtensionException If required extensions for SlackWebhookHandler are not installed.
      */
-    public function __construct(string $url, array $levels = [Logger::INFO])
+    public function __construct(string $url, array $levels = [Level::Info])
     {
-        // Set 'includeContextAndExtra' parameter to true to include context in the log.
         parent::__construct($url, null, null, true, null, false, true);
         $this->levels = $levels;
     }
@@ -34,12 +34,12 @@ class CustomLogLevelHandler extends SlackWebhookHandler
      * This method checks if the level of the log record matches any level
      * defined in the handler's levels array.
      *
-     * @param array $record An array representing a partial log record, containing at least a 'level' key.
-     *                      Example: ['level' => Logger::WARNING, ...].
+     * @param array|LogRecord $record An array representing a partial log record, containing at least a 'level' key.
+     *                      Example: ['level' => Level::Warning, ...].
      * @return bool Returns true if the log record's level matches one of the handler's levels, false otherwise.
      */
-    public function isHandling(array $record): bool
+    public function isHandling(array|\Monolog\LogRecord $record): bool
     {
-        return in_array($record['level'], $this->levels, true);
+        return in_array(Level::fromValue($record['level']), $this->levels, true);
     }
 }
