@@ -12,7 +12,7 @@
 Install the latest version with
 
 ```bash
-$ composer require naveen-codehub/laarvel-selective-slack-logger
+$ composer require naveen-codehub/laravel-selective-slack-logger
 ```
 
 ## Usage
