@@ -1,6 +1,7 @@
 {
     "name": "naveen-codehub/laravel-selective-slack-logger",
     "description": "A Laravel package to selectively log specific levels (e.g., error, debug) to Slack with ease and flexibility.",
+    "keywords": ["Laravel Package", "Slack", "Specific Log Levels", "Particualr Log Levels", "Slack Logs"],
     "type": "library",
     "license": "MIT",
     "autoload": {
