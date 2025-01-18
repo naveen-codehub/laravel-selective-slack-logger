@@ -3,7 +3,7 @@
 `laravel-selective-slack-logger` is a package that allows you to define specific log levels to post logs to Slack using the Monolog package. You can choose any log levels, and you can even choose more than one log level (e.g., error, info). When you specify certain log levels, only those logs will be posted to Slack.
 
 ### Version Compatibility:
-- Version `v1.*` is intended for **Laravel 9** and below versions.
+- Version `v2.*` is intended for **Laravel 10** and **Laravel 11** versions.
 
 ---
 
@@ -25,7 +25,7 @@ To configure logging to Slack with specific log levels, you can modify your Lara
     'handler' => CustomLogLevelHandler::class,
     'handler_with' => [
         'url' => env('SELECTIVE_SLACK_LOGGER_WEBHOOK_URL'),
-        'levels' => [\Monolog\Logger::WARNING, \Monolog\Logger::EMERGENCY],
+        'levels' => [\Monolog\Level::Warning, \Monolog\Level::Emergency],
     ],
 ],
 ```
@@ -33,8 +33,8 @@ To configure logging to Slack with specific log levels, you can modify your Lara
 
 ### Requirements
 
-- Monolog `^2.0` works with PHP 7.2 or above.
-- Laravel `^7.0 || ^8.0 || ^9.0`
+- Monolog `^3.0` works with PHP 8.1 or above.
+- Laravel `^10.0 || ^11.0`
 
 ### Author
 
